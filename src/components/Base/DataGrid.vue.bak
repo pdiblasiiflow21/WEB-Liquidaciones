@@ -1,0 +1,127 @@
+﻿<template>
+    <div class="data-grid">
+        <div class="dg-repeater">
+            <div class="dgr-item" v-for="(row, index) in rows" :key="index">
+              <slot name="repeater" v-bind:entity="row"></slot>
+            </div>
+            <p v-if="!rows.length && !hasColumns" class="dg-empty">No se han encontrado resultados</p>
+        </div>
+        <basic-table :rows="rows" :showActions="showActions" v-if="hasColumns">            
+            <slot></slot>
+            <template slot="action-column" slot-scope="props">            
+                <slot name="action-column" v-bind:entity="props.entity"></slot>
+            </template>            
+        </basic-table>
+        <paginate ref="paginate" v-show="rowCount > rowsPerPage" :rowsPerPage="rowsPerPage" :rowCount="rowCount" @pageChanged="pageChanged"></paginate>
+        <error-info :show="result.hasErrors" :messages="result.messages"></error-info>
+        <loading ref="loading" />
+    </div>
+</template>
+
+<script>    
+    export default {
+        name: 'DataGrid',
+        props: {
+            resource: {
+                type: String,
+                required: true
+            },
+            method: {
+                type: String,
+                required: false,
+                default: 'query'
+            },
+            filter: {
+                type: Object,
+                required: false,
+                default: function () {
+                    return {};
+                }
+            },
+            rowsPerPage: {
+                type: Number,
+                required: false,
+                default: 10
+            },
+            showActions: {        
+                required: false
+            }         
+        },
+        data() {
+            return {
+                result: { hasErrors: false, messages: [] },
+                rowCount: 0,
+                rows: [],
+                page: 1                
+            }
+        },
+        mounted() {
+            this.getPage()
+        },
+        computed: {
+            api() {
+                return this.$api[this.resource];
+            },
+            hasColumns() {
+               return this.$slots && this.$slots.default && this.$slots.default.length;
+            },
+            hasRows(){
+                
+            },
+            hasRepeater() {
+               return this.$slots.repeater;
+            },
+        },
+        methods: {
+            pageChanged(props) {
+                this.page = props.page;
+                this.rowsPerPage = props.rowsPerPage;
+
+                this.getPage();
+            },
+            search (multiColumnSearchText) {
+                this.filter.multiColumnSearchText = multiColumnSearchText;
+                this.page = 1;
+                this.$refs.paginate.reset();                
+                this.rowCount = 0;
+                this.getPage();
+            },
+            searchCustom (company) {
+
+                this.filter.company_id = company == null ? 0 : company.id;
+                this.page = 1;
+                this.$refs.paginate.reset();                
+                this.rowCount = 0;
+                this.getPage();
+            },
+            getPage() {
+                this.$refs.loading.show();
+                
+                let request = { ...this.filter, currentPage: this.page, pageSize: this.rowsPerPage };
+
+                this.api[this.method](request).then(response => {
+                    this.rows = response.body.data;
+                    this.rowCount = response.body.count;
+                    this.$refs.loading.hide();
+                    this.$emit('onDataLoaded', this.rowCount);
+                }).catch(err => {
+                    this.rows = [];
+                    this.$refs.loading.hide();
+                    this.result.hasErrors = true;
+                    this.result.messages = [err];
+                })
+            }
+        }
+    };
+</script>
+
+<style>
+ .dg-empty {
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 1;
+    color: rgb(144, 144, 144);
+    margin: 20px 0;
+    text-align: center;
+ }
+</style>

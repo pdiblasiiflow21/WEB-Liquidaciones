@@ -1,0 +1,253 @@
+<template>
+  <div class="usuario-container">
+    <div class="grid">
+      <list-view
+        resource="auth"
+        method="getUsers"
+        :onBeforeSave="onBeforeSave"
+        :onBeforeEdit="onBeforeEdit"
+        :customValidations="customValidations"
+        :showActions="true"
+      >
+        <!-- TITULO -->
+        <template slot="title">Usuarios</template>
+
+        <!-- COLUMNAS -->
+        <template slot="columns">
+          <column field="given_name" title="Nombre" />
+          <column field="family_name" title="Apellido" />
+          <column field="email" title="Email" />          
+          <!-- ROL -->
+          <column field="created" title="Registrado" />          
+          <column
+            :field="
+              (entity) => {
+                return entity.blocked ? 'No' : 'Si';
+              }
+            "
+            title="Habilitado"
+          />
+        </template>
+        <template slot="action-column" slot-scope="props">
+          <!-- <b-button class="mb-1" size="xs" variant="outline-success" @click="resetPassword(props.entity)">Reset</b-button> -->
+          <!-- <b-button class="mb-1" size="xs" variant="outline-success" @click="resetPassword(props.entity)">Bloquear</b-button> -->
+          <b-button
+            v-if="!props.entity.blocked"
+            class="mb-1"
+            size="xs"
+            variant="outline-danger"
+            @click="changeStatusConfirm(props.entity)"
+            >Bloquear
+          </b-button>
+          <b-button
+            v-if="props.entity.blocked"
+            class="mb-1"
+            size="xs"
+            variant="outline-success"
+            @click="changeStatusConfirm(props.entity)"
+            >Habilitar
+          </b-button>
+        </template>
+        <template slot="modal-form" slot-scope="props">
+          <b-form-group label="Mail">
+            <b-form-input
+              type="email"
+              v-model="props.form.entity.email"
+              placeholder="Mail"
+              :state="$isValid(props.form.$v.form.entity.email)"
+            />
+            <b-form-invalid-feedback>Ingrese el mail</b-form-invalid-feedback>
+          </b-form-group>
+          <b-form-group label="Nombre">
+            <b-form-input
+              v-model="props.form.entity.given_name"
+              placeholder="Nombre"
+              :state="$isValid(props.form.$v.form.entity.given_name)"
+            />
+            <b-form-invalid-feedback>Ingrese el nombre</b-form-invalid-feedback>
+          </b-form-group>
+          <b-form-group label="Apellido">
+            <b-form-input
+              v-model="props.form.entity.family_name"
+              placeholder="Apellido"
+              :state="$isValid(props.form.$v.form.entity.family_name)"
+            />
+            <b-form-invalid-feedback
+              >Ingrese el apellido</b-form-invalid-feedback
+            >
+          </b-form-group>
+          <!-- <b-form-group label="Perfil">
+                    <select-deluxe
+                        resource="perfiles"
+                        method="getPerfiles"
+                        selectItemLabel="nombre"
+                        v-model="props.form.entity.role"
+                    ></select-deluxe>
+                     <div class="invalid-feedback show" v-if="$isValid(props.form.$v.form.entity.role) === false">Seleccione el perfil</div>                     
+                </b-form-group>              -->
+        </template>
+      </list-view>
+      <b-modal ref="confirmModal" :title="changeStatusTitle">
+        ¿Desea continuar con la operación?
+        <error-info
+          :show="resultModal.hasErrors"
+          :messages="resultModal.messages"
+        ></error-info>
+        <template slot="modal-footer">
+          <b-button
+            variant="primary"
+            @click="confirmResetPassword()"
+            class="mr-1"
+            >Aceptar</b-button
+          >
+          <b-button variant="secondary" @click="$refs.confirmModal.hide()"
+            >Cancelar</b-button
+          >
+        </template>
+      </b-modal>
+      <b-modal ref="confirmModalBlock" :title="titleChangeStatus">
+        {{ bodyChangeStatus }}
+        <template slot="modal-footer">
+          <b-button variant="secondary" @click="$refs.confirmModal.hide()"
+            >Cancelar</b-button
+          >
+          <b-button variant="primary" @click="changeStatus()" class="mr-1"
+            >Aceptar</b-button
+          >
+        </template>
+      </b-modal>
+    </div>
+    <loading ref="loader" />
+  </div>
+</template>
+
+<script>
+const { required } = require("vuelidate/lib/validators");
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
+
+export default {
+  data() {
+    return {
+      customValidations: {
+        given_name: { required },
+        family_name: { required },
+        email: { required },
+        // role: { required }
+      },
+      vueSelectForm: {
+        single: "",
+        multiple: [],
+      },
+      changeStatusTitle: null,
+      resultModal: { hasErrors: false, messages: [] },
+      // direction: getDirection().direction,
+      // selected:[],
+      // selectData: [],
+      // userCount : null,
+      // licencia: null,
+      titleChangeStatus: "",
+      bodyChangeStatus: "",
+      userSelect: null,
+    };
+  },
+  components: {
+    "v-select": vSelect,
+  },
+  methods: {
+    changeStatusConfirm(entity) {
+      this.userSelect = entity;
+      this.titleChangeStatus = `¿Confirma que desea ${
+        entity.blocked ? "habilitar" : "bloquear"
+      } al usuario ${entity.email}?`;
+      this.bodyChangeStatus = entity.blocked
+        ? "Esta acción le permitirá el ingreso al portal al usuario."
+        : "Esta acción no le permitirá el ingreso al portal al usuario.";
+      this.$refs.confirmModalBlock.show();
+    },
+    async changeStatus() {
+      this.$refs.loader.show();
+      this.$refs.confirmModalBlock.hide();
+      var request = {
+        user_id: this.userSelect.user_id,
+        block: !this.userSelect.blocked,
+      };
+
+      await this.$api.auth.blockUser(request);
+      this.userSelect = null;
+      this.$refs.loader.hide();
+      this.$refs.listView.search();
+      // baseService.blockUser('api/auth/ChangeUserStatus', request).then(res => {
+      //     this.userSelect = null;
+      //     this.$refs.loader.hide();
+      //     this.$refs.listView.search();
+      // });
+    },
+    onBeforeEdit(form) {
+      // this.$refs.loader.show();
+      if (!form.entity.id) return;
+
+      // this.$refs.loader.hide(300);
+      return Promise.resolve(true);
+      // return Promise.resolve(true).then(res => {
+      //     this.$refs.loader.hide(300);
+      // })
+    },
+    onBeforeSave(form) {
+      let result = { hasErrors: false, messages: [] };
+      //add validations here
+      result.hasErrors = result.messages.length > 0;
+      //apply custom logic here
+
+      // if(this.licencia.plan.cantidadUsuarios <= this.userCount){
+      //     result.hasErrors = true
+      //     this.$refs.limitLicencia.show();
+      //     return Promise.resolve(result);
+      // }else{
+      //form.entity.role =  form.entity.role ? form.entity.role.nombre : null;
+
+      return Promise.resolve(result);
+    },
+    resetPassword(entity) {
+      this.resultModal.hasErrors = false;
+      this.currentEntity = entity;
+
+      this.changeStatusTitle = `Confirmar reseteo de Password`;
+
+      this.$refs.confirmModal.show();
+    },
+    async confirmResetPassword() {
+      this.$refs.loader.show();
+      this.resultModal.hasErrors = false;
+
+      try {
+        await this.$api.security.resetPassword({
+          id: this.currentEntity.id,
+          userName: this.currentEntity.email,
+          password: "",
+        });
+
+        // this.$refs.listView.search();
+        this.$refs.confirmModal.hide();
+        this.currentEntity = null;
+      } catch (ex) {
+        this.resultModal = ex.body.result;
+      }
+      this.$refs.loader.hide(300);
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.usuario-container {
+  height: 100%;
+  .panel {
+    margin-bottom: 1rem;
+  }
+}
+
+// .usuario-container .top-right-button-container{
+//     display: none;
+// }
+</style>

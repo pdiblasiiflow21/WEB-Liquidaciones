@@ -1,0 +1,17 @@
+import axios from "axios";
+const API_BASE_URL = 'https://apiadministraciontest.h1factory.com/api/';//"http://localhost:47515/api/";
+
+export default {
+  get(url,request) {
+    return axios.get(`${API_BASE_URL}${url}`,{params:request});
+  },
+  create(url,request) {
+    return axios.post(`${API_BASE_URL}${url}`, request);
+  },
+  update(url,request) {
+    return axios.put(`${API_BASE_URL}${url}`, request);
+  },
+  delete(url){
+    axios.delete(`${API_BASE_URL}${url}`);
+  }
+};

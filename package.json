@@ -1,0 +1,80 @@
+{
+  "name": "piaf-vue",
+  "version": "4.0.2",
+  "description": "H1 - Administración",
+  "author": "Habito1",
+  "private": true,
+  "scripts": {
+    "serve-desa": "cross-env NODE_ENV=DESA vue-cli-service serve",
+    "serve-test": "cross-env NODE_ENV=TEST vue-cli-service serve",
+    "serve-prod": "cross-env NODE_ENV=PROD vue-cli-service serve",
+    "build-desa": "cross-env NODE_ENV=DESA vue-cli-service build",
+    "build-test": "cross-env NODE_ENV=TEST vue-cli-service build",
+    "build-prod": "cross-env NODE_ENV=PROD vue-cli-service build"
+  },
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^1.13.6",
+    "@glidejs/glide": "^3.4.1",
+    "@revolist/vue-datagrid": "^3.0.97",
+    "@revolist/vue3-datagrid": "^3.0.96",
+    "axios": "^0.18.1",
+    "bootstrap-vue": "^2.0.4",
+    "chart.js": "2.7.2",
+    "core-js": "^3.3.2",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.10.6",
+    "downloadjs": "^1.4.7",
+    "firebase": "^7.4.0",
+    "sass": "^1.77.8",
+    "text-mask-addons": "^3.8.0",
+    "v-calendar": "^0.9.7",
+    "v-contextmenu": "^2.8.0",
+    "v-mask": "^2.2.4",
+    "video.js": "^7.4.1",
+    "vue": "^2.6.10",
+    "vue-autosuggest": "^1.8.2",
+    "vue-chartjs": "^3.4.2",
+    "vue-headroom": "^0.9.0",
+    "vue-i18n": "^8.9.0",
+    "vue-light-gallery": "^1.0.1",
+    "vue-line-clamp": "^1.3.2",
+    "vue-perfect-scrollbar": "^0.1.0",
+    "vue-quill-editor": "^3.0.6",
+    "vue-radial-progress": "^0.2.10",
+    "vue-resource": "^1.5.2",
+    "vue-router": "^3.1.3",
+    "vue-runtime-helpers": "^1.1.2",
+    "vue-scrollto": "^2.15.0",
+    "vue-select": "^3.1.0",
+    "vue-shortkey": "^3.1.6",
+    "vue-simple-calendar": "^4.2.1",
+    "vue-slider-component": "^3.0.26",
+    "vue-switches": "^2.0.1",
+    "vue-yandex-maps": "^0.8.3",
+    "vue2-dropzone": "^3.5.7",
+    "vue2-google-maps": "^0.10.6",
+    "vuedraggable": "^2.19.3",
+    "vuelidate": "^0.7.4",
+    "vuetable-2": "^1.7.5",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.0.0",
+    "@vue/cli-plugin-router": "^4.0.0",
+    "@vue/cli-plugin-vuex": "^4.0.0",
+    "@vue/cli-service": "^4.0.0",
+    "copy-webpack-plugin": "^4.0.2",
+    "sass-loader": "^8.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

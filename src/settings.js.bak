@@ -1,0 +1,31 @@
+const settings = {
+  DESA: {
+    apiUrl: "https://apiadministraciontest.h1factory.com",
+    //apiUrl: "http://localhost:62280/",
+    //apiUrl: "http://localhost:47515/",
+    clientId: "administracionWebApp",
+    //weatherUrl: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5',
+    // identityPoolId: 'us-east-1:a0129bce-7bf4-4b27-aa72-045b36b1e5cb',
+    // region: 'us-east-1',
+    // bucket: 'hbuildtest-files.grupozag.com',
+  },
+  TEST: {
+    apiUrl: "https://apiadministraciontest.h1factory.com/",
+    clientId: "administracionWebApp",
+    //weatherUrl: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5',
+    // identityPoolId: 'us-east-1:a0129bce-7bf4-4b27-aa72-045b36b1e5cb',
+    // region: 'us-east-1',
+    // bucket: 'hbuildtest-files.grupozag.com',
+  },
+  PROD: {
+    apiUrl: "https://apiadministraciontest.h1factory.com",
+    clientId: "administracionWebApp",
+    //weatherUrl: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5',
+    // identityPoolId: 'us-east-1:a0129bce-7bf4-4b27-aa72-045b36b1e5cb',
+    // region: 'us-east-1',
+    // bucket: 'hbuildtest-files.grupozag.com', 
+  }
+};
+
+export default settings[process.env.NODE_ENV];
+
