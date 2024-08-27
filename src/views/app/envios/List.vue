@@ -29,7 +29,7 @@
                 <b-colxx :xxs="3">
                 <div class="filter   float-md-left mr-6 align-top"></div>
                 <div class="filter-sm">
-                    <select-deluxe resource="clientes" class="list-filter" :filter="filterClient" :selectItemLabel="({ razonSocialNombre }) => `${razonSocialNombre}`"  method="getAll"  valueField="id" placeholder="Seleccionar cliente" v-model="filtroGrillaOptions.clienteId" ></select-deluxe>
+                    <select-deluxe resource="clientes" class="list-filter" :filter="filterClient" :selectItemLabel="({ razonSocialNombre }) => `${razonSocialNombre}`"  method="getAll"  valueField="id" placeholder="Buscar por Razón Social / Usuario OMS" v-model="filtroGrillaOptions.clienteId" ></select-deluxe>
                 </div>          
             </b-colxx>      
 
@@ -60,7 +60,7 @@
             <template slot='columns'>
                 <column field="id" title="Id" width="15" />
                 <column :field="(entity) => moment(entity.fecha).format('DD/MM/YYYY')"  title="Fecha" width="40" />   
-                <column :field="(entity) => entity.cliente.razonSocialNombre"  title="Cliente" width="40" />                                         
+                <column :field="(entity) => entity.cliente.razonSocialNombre"  title="Usuario OMS" width="40" />                                         
                 <column field="etiqueta" title="Etiqueta" width="50" />                                                
                 <column :field="(entity) => entity.cantidad" title="Cantidad" width="100" />
                 <column :field="(entity) => maskForCulNum(entity.valoritems)" title="Valor ítems" width="100" />                                                                                                                                            

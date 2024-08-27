@@ -2,7 +2,7 @@
   "name": "piaf-vue",
   "version": "4.0.2",
   "description": "H1 - Administración",
-  "author": "Habito1",
+  "author": "Pablo Di Blasi",
   "private": true,
   "scripts": {
     "serve-desa": "cross-env NODE_ENV=DESA vue-cli-service serve",
@@ -64,6 +64,7 @@
     "@vue/cli-plugin-vuex": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "copy-webpack-plugin": "^4.0.2",
+    "hint": "^7.1.12",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
   },

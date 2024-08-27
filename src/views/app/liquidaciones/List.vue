@@ -22,7 +22,7 @@
                     <div class="filter float-md-left mr-6 align-top"></div>
                     <div class="filter-sm">
                         <select-deluxe resource="clientes" :selectItemLabel="({ razonSocialNombre }) => `${razonSocialNombre}`"
-                            method="getAll" placeholder="Seleccionar cliente" valueField="id" v-model="filtroGrillaOptions.clienteId" class="list-filter"></select-deluxe>
+                            method="getAll" placeholder="Buscar por Razón Social / Usuario OMS" valueField="id" v-model="filtroGrillaOptions.clienteId" class="list-filter"></select-deluxe>
                     </div>
                 </b-colxx>
                 <b-colxx :xxs="3">
@@ -57,7 +57,7 @@
             <template slot="columns">
                 <column field="id" title="Id" width="15" />
                 <column :field="(entity) => moment(entity.createDate).format('DD/MM/YYYY')" title="Fecha" width="100" />
-                <column :field="(entity) => entity.cliente.razonSocialNombre" title="Cliente" width="150" />
+                <column :field="(entity) => entity.cliente.razonSocialNombre" title="Usuario OMS" width="150" />
                 <column field="descripcion" title="Descripción" width="150" />
                 <column :field="(entity) => { return '$ ' + maskForCulNum(entity.saldo)}" title="Saldo" width="140" />
                 <column field="numeroFactura" title="Número factura" width="100" />
@@ -559,7 +559,8 @@
                 </b-col>
             </b-form>
             <template slot="modal-footer">
-                <b-button variant="secondary" @click="closeRequestMessage()">Cerrar</b-button>
+                <b-button variant="secondary" @click="closeRequestMessage()">Cerrar
+                </b-button>
             </template>
         </b-modal>
         <b-modal ref="ordenesEnviosModal" title="Liquidación" size="xl" :hide-footer="true" no-close-on-backdrop @ok="handleOk">

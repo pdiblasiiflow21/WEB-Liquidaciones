@@ -11,7 +11,7 @@
         ref="listView"
       >
         <!-- TITULO -->
-        <template slot="title">Usuarios - "Habito@123"</template>
+        <template slot="title">Usuarios - "Puerta de Atras"</template>
 
         <!-- COLUMNAS -->
         <template slot="columns">

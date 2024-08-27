@@ -14,7 +14,9 @@ export default new Vuex.Store({
   state: {
 
     settings: {
-      apiUrl: "https://localhost:44393/",
+      // apiUrl: "https://localhost:44393/",
+      apiUrl: "https://localhost:5000/",
+      
       clientId: "administracionWebApp",
       //weatherUrl: 'https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5',
       // identityPoolId: 'us-east-1:a0129bce-7bf4-4b27-aa72-045b36b1e5cb',

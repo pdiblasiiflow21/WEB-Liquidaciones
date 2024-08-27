@@ -467,7 +467,7 @@
                     estado: {},
                     ingresosBrutosArchivos: {}
                 },
-                sada: 'Buscar por Nombre / Usuario / Razón Social / Documento',
+                sada: 'Razón Social / Usuario OMS / Nombre / Documento',
                 api: this.$api["clientes"],
                 impuestos: [],
                 modalSize: 'xl',
@@ -479,14 +479,16 @@
                 ], 
                 estadosFacturacion: [
                   { value: 10, text: 'Descargado'},
-                  { value: 48, text: 'No Colectado'},
+                  { value: 69, text: 'No Colectado'},
                   { value: 25, text: 'Entregado'},
                   { value: 26, text: 'No Entregado'},
                   { value: 51, text: 'Proceso Devolución'},
-                ], 
+                ],
+                // Corresponde el modo de entrega de API 
                 metodosEnvio: [
                     { value: 4, text: 'Logística inversa' },
-                    { value: 1, text: 'Puerta a puerta' }
+                    { value: 1, text: 'Puerta a puerta' },
+                    { value: 6, text: 'Puerta a Puerta Ju' }
                 ],
                 filtroGrillaOptions: {
                     estadoFacturacion: ''

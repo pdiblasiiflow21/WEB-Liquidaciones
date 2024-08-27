@@ -1,6 +1,6 @@
   <template>
   <div class="welcome">
-    <h2>Bienvenido PRUEBA PARA OMAR <strong>{{currentUser.displayname}}</strong> al sistema de Liquidaciones</h2>
+    <h2>Bienvenido <strong>{{currentUser.displayname}}</strong> al sistema de Liquidaciones</h2>
     <span class="home-logo"></span>
    </div>
 </template>

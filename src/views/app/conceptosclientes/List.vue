@@ -119,7 +119,7 @@
                     tipoCliente: 2
                 },
                 moment: moment,                
-                sada: 'Buscar por Razón Social',
+                sada: 'Buscar por Razón Social / Usuario OMS',
             }
         },
         methods: {

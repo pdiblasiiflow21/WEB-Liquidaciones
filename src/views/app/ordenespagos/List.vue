@@ -30,7 +30,7 @@
             <b-colxx :xxs="3">
                 <div class="filter   float-md-left mr-6 align-top"></div>
                 <div class="filter-sm">
-                    <select-deluxe resource="clientes" class="list-filter" :filter="filterClient" :selectItemLabel="({ razonSocial, nombre, apellido }) => `${razonSocial ? razonSocial : (nombre && apellido ? nombre + ' ' + apellido : '')}`" method="getAll"  valueField="id" placeholder="Seleccionar cliente" v-model="filtroGrillaOptions.clienteId" ></select-deluxe>
+                    <select-deluxe resource="clientes" class="list-filter" :filter="filterClient" :selectItemLabel="({ razonSocial, nombre, apellido }) => `${razonSocial ? razonSocial : (nombre && apellido ? nombre + ' ' + apellido : '')}`" method="getAll"  valueField="id" placeholder="Buscar por Razón Social / Usuario OMS" v-model="filtroGrillaOptions.clienteId" ></select-deluxe>
                 </div>          
             </b-colxx>      
 
@@ -60,7 +60,7 @@
 
             <template slot='columns'>
                 <column :field="(entity) => moment(entity.fecha).format('DD/MM/YYYY')"  title="Fecha" width="40" />   
-                <column :field="(entity) => getRazonSocial(entity.cliente.razonSocial, entity.cliente.nombre, entity.cliente.apellido)"  title="Cliente" width="40" />       
+                <column :field="(entity) => getRazonSocial(entity.cliente.razonSocial, entity.cliente.nombre, entity.cliente.apellido)"  title="Usuario OMS" width="40" />       
                 <column :field="(entity) => getCodigosSeguimiento(entity.codigoOrdenPago)" title="Códigos de seguimiento" width="50" />                                
                 <column field="idMercadoPago" title="Orden de pago" width="15" />                                                
                 <column :field="(entity) => maskForCulNum(entity.valorSinImpuesto)" title="Importe sin impuestos" width="100" />                                                

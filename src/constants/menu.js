@@ -45,6 +45,12 @@ const data = [
       label: "Clientes",
       to: "/app/tablas/clientes" 
     },
+    {
+      id: "Usuarios",
+      icon: "simple-icon-paper-plane",
+      label: "Usuarios",
+      to: "/app/usuarios" 
+    },
     ]
   } 
 ];

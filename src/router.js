@@ -31,16 +31,43 @@ const routes = [
       { path: 'app/dashboard', component: () => import(/* webpackChunkName: "usuarios" */ './views/app/dashboard/Container') },
       { path: 'app/usuarios', component: () => import(/* webpackChunkName: "usuarios" */ './views/app/usuarios/Container') },
       { path: 'app/proyectos', component: () => import(/* webpackChunkName: "proyectos" */ './views/app/proyectos/List') },
+      
       { path: 'app/gastos', component: () => import(/* webpackChunkName: "gastos" */ './views/app/gastos/List') },
+      
       { path: 'app/ordenespagos', component: () => import(/* webpackChunkName: "gastos" */ './views/app/ordenespagos/List') },
+     
       { path: 'app/envios', component: () => import(/* webpackChunkName: "gastos" */ './views/app/envios/List') },
+     
       { path: 'app/liquidaciones', component: () => import(/* webpackChunkName: "gastos" */ './views/app/liquidaciones/List') },
-      { path: 'app/conceptosclientes', component: () => import(/* webpackChunkName: "licencias" */ './views/app/conceptosclientes/List') },
+
+      { path: 'app/conceptosclientes', component: () => import(/* webpackChunkName: "gastos" */ './views/app/conceptosclientes/List') },
+
+
+
       { path: '/app/tablas/clientes', component: () => import(/* webpackChunkName: "clientes" */   './views/app/tablas/clientes/List') },
       { path: '/app/tablas/conceptos', component: () => import(/* webpackChunkName: "conceptos" */ './views/app/tablas/conceptos/List') },
       { path: '/app/reportes/facturacionygastos', component: () => import(/* webpackChunkName: "facturacionygastos" */ './views/app/reportes/facturacionygastos/facturacionygastos') },
       { path: '/app/reportes/proyectos', component: () => import(/* webpackChunkName: "permisos" */ './views/app/reportes/proyectos/proyectos') },
       { path: '/app/cashflow', component: () => import(/* webpackChunkName: "permisos" */ './views/app/cashflow/List') },
+      //psd
+      { path: '/app/roles', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/roles/roles') },
+      { path: '/app/rolespermisos', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/permisos/permisos') },
+      { path: '/app/rolesasignaciones', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/asignaciones/asignaciones') },
+      { path: '/app/licencias', component: () => import(/* webpackChunkName: "permisos" */ './views/app/licencias/Container') },
+
+      //{ path: '/app/cashflow', component: () => import(/* webpackChunkName: "permisos" */ './views/app/cashflow/List') }, NO HACE NADA
+      //{ path: '/app/companias', component: () => import(/* webpackChunkName: "permisos" */ './views/app/companias/List') }, NO HACE NADA
+      //{ path: '/app/cuentasbancarias', component: () => import(/* webpackChunkName: "permisos" */ './views/app/cuentasbancarias/List') }, NO HACE NADA
+      //{ path: '/app/hitos', component: () => import(/* webpackChunkName: "permisos" */ './views/app/hitos/List') }, NO HACE NADA
+      //{ path: 'app/ordenpagos', component: () => import(/* webpackChunkName: "gastos" */ './views/app/ordenpagos/List') }, NO HACE NADA
+
+
+
+
+
+
+
+
       { path: '/app/home', component: () => import(/* webpackChunkName: "permisos" */ './views/app/home/List') }
     ]
   },
