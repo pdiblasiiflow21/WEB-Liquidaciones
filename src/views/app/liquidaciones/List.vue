@@ -57,7 +57,7 @@
             <template slot="columns">
                 <column field="id" title="Id" width="15" />
                 <column :field="(entity) => moment(entity.createDate).format('DD/MM/YYYY')" title="Fecha" width="100" />
-                <column :field="(entity) => entity.cliente.razonSocialNombre" title="Usuario OMS" width="150" />
+                <column :field="(entity) => entity.cliente.razonSocialNombre" title="Razón Social" width="150" />
                 <column field="descripcion" title="Descripción" width="150" />
                 <column :field="(entity) => { return '$ ' + maskForCulNum(entity.saldo)}" title="Saldo" width="140" />
                 <column field="numeroFactura" title="Número factura" width="100" />
