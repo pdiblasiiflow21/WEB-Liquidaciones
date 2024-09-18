@@ -60,7 +60,7 @@
 
             <template slot='columns'>
                 <column :field="(entity) => moment(entity.fecha).format('DD/MM/YYYY')"  title="Fecha" width="40" />   
-                <column :field="(entity) => getRazonSocial(entity.cliente.razonSocial, entity.cliente.nombre, entity.cliente.apellido)"  title="Usuario OMS" width="40" />       
+                <column :field="(entity) => getRazonSocial(entity.cliente.razonSocial, entity.cliente.nombre, entity.cliente.apellido)"  title="Razon Social" width="40" />       
                 <column :field="(entity) => getCodigosSeguimiento(entity.codigoOrdenPago)" title="Códigos de seguimiento" width="50" />                                
                 <column field="idMercadoPago" title="Orden de pago" width="15" />                                                
                 <column :field="(entity) => maskForCulNum(entity.valorSinImpuesto)" title="Importe sin impuestos" width="100" />                                                

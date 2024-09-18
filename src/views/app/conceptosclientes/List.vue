@@ -39,7 +39,7 @@
 
             <template slot='columns'>
                 <column field="id" title="Id" width="40" />
-                <column :field="(entity) => entity.cliente.razonSocialNombre"  title="Usuario OMS" width="150" />                                                
+                <column :field="(entity) => entity.cliente.razonSocialNombre"  title="Razon Social" width="150" />                                                
                 <column :field="(entity) => { return entity.concepto.codigo }" title="Código concepto" width="100"/>                                                
                 <column :field="(entity) => { return entity.observacion}" title="Observación" width="200"/>                                                
                 <column :field="(entity) => maskForCulNum(entity.monto)"  title="Monto" width="100"/>
@@ -51,7 +51,7 @@
                     <b-row>
                         <b-col>
                             <b-form-group label="Cliente"> 
-                                <select-deluxe resource="clientes" :filter="filterCustomer"  :selectItemLabel="({ razonSocialNombre, omsId }) => `${razonSocialNombre} (${omsId})`"  method="getAll"  placeholder="Seleccionar cliente" v-model="props.form.entity.cliente"  :state="$isValid(props.form.$v.form.entity.cliente)" :enabled="!(props.form.entity && props.form.entity.id > 0)"></select-deluxe>
+                                <select-deluxe resource="clientes" :filter="filterCustomer"  :selectItemLabel="({ razonSocialNombre, omsId }) => `${razonSocialNombre} (${omsId})`"  method="getAll"  placeholder="Buscar por Razón Social / Usuario OMS" v-model="props.form.entity.cliente"  :state="$isValid(props.form.$v.form.entity.cliente)" :enabled="!(props.form.entity && props.form.entity.id > 0)"></select-deluxe>
                                 <b-form-invalid-feedback>Seleccione el Cliente</b-form-invalid-feedback>
                             </b-form-group>
                         </b-col>
