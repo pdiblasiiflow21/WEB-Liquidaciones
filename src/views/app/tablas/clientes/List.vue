@@ -496,9 +496,10 @@
                 ],
                 // Corresponde el modo de entrega de API 
                 metodosEnvio: [
-                    { value: 4, text: 'Logística inversa' },
-                    { value: 1, text: 'Puerta a puerta' },
-                    { value: 6, text: 'Puerta a Puerta Ju' }
+                    { value: 1, text: 'Puerta a Puerta' },
+                    { value: 4, text: 'Logística Inversa' },
+                    { value: 6, text: 'Puerta a Puerta Ju' },
+                    { value: 8, text: 'Fulfillment Refrigerado' }  
                 ],
                 filtroGrillaOptions: {
                     estadoFacturacion: ''
