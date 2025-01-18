@@ -74,7 +74,11 @@
         </list-view>
 
         <b-modal ref="confirmModal" title="GENERAR LIQUIDACION">
+
                 <input type="text" id="textdescripcion" ref="textdescripcion" class="form-control" pattern="[A-Za-z0-9]{8,20}"  placeholder="Ingrese Descripcion Liquidacion" required>
+
+                
+
                 <template slot="modal-footer">
                     <b-button variant="primary" @click="GenerarLiquidacion($refs.textdescripcion.value)" class="mr-1">Aceptar</b-button>
                     <b-button variant="secondary" @click="$refs.confirmModal.hide()">Cancelar</b-button>

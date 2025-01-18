@@ -3,7 +3,7 @@
         <list-view ref="listView" resource="liquidaciones" :customValidations="customValidations" :modalSize="modalSize" :showFooterModal="showFooterModal"   
                 :searchBy="sada" :showCheck="true" :checkFunction="checkAllFunction"
             :showActions="true" :showEdit="showEdit" :showDelete="false" :onBeforeEdit="onBeforeEdit"  :filter=filtroGrillaOptions :onAfterLoad="onAfterLoad" :onBeforeSave="onBeforeSave" :disableSave="disableSave">
-            <template slot="title"> Liquidaciones </template>
+            <template slot="title"> Liquidaciones</template>
             <template slot="action-btn">
                 <b-button variant="dark" size="sm"  @click="resetData"><img src="/assets/img/borrador.png" height ="20" width="20" /></b-button>
                 <b-button class="mb-1 color-white" size="lg" variant="warning" :disabled="(this.liquidacionesAAutorizar.length<=0 && !
@@ -58,9 +58,13 @@
                 <column field="id" title="Id" width="15" />
                 <column :field="(entity) => moment(entity.createDate).format('DD/MM/YYYY')" title="Fecha" width="100" />
                 <column :field="(entity) => entity.cliente.razonSocialNombre" title="Razón Social" width="150" />
+
                 <column field="descripcion" title="Descripción" width="150" />
-                <column :field="(entity) => { return '$ ' + maskForCulNum(entity.saldo)}" title="Saldo" width="140" />
-                <column field="numeroFactura" title="Número factura" width="100" />
+
+                <column field="ordenCompra" title="O. C." width="75" />
+
+                <column :field="(entity) => { return '$ ' + maskForCulNum(entity.saldo)}" title="Saldo" width="100" />
+                <column field="numeroFactura" title="Factura" width="100" />
                 <column :field="(entity) => { return '$ ' + maskForCulNum(entity.montoTotalImpuestos)}" title="Monto impuestos"
                     width="100" />
                 <column :field="(entity) => { return '$ ' + maskForCulNum(entity.montoFinalFactura)}" title="Monto factura"
@@ -68,7 +72,7 @@
                 <column :field="(entity) => getEstado(entity.estado)" title="Estado" width="50" />
                         <column :field="(entity) => { return entity.updatedBy ? entity.updatedBy  : entity.createdBy }" title="Usuario Modificación"/>      
                         <column :field="(entity) => moment(entity.updatedBy ? entity.updateDate  : entity.createDate).format('DD/MM/YYYY')" title="Fecha Modificación" width="50"/>    
-                <column :field="(entity) => customerIsValid(entity.cliente) ? 'Ok' : 'Revisar'" title="Cliente Datos ERP" width="40" />                             
+                <column :field="(entity) => customerIsValid(entity.cliente) ? 'Ok' : 'Revisar'" title="ERP" width="30" />                             
             </template>
             <template slot='modal-form' slot-scope="props">
                 <div v-if="view === 0">
@@ -78,18 +82,28 @@
                                 <b-form-input v-model="props.form.entity.id" placeholder="Id" :disabled="true" />
                             </b-form-group>
                         </b-col>
+
                         <b-col>
                             <b-form-group label="Fecha">
                                 <b-form-input :value="moment(props.form.entity.createDate).format('DD/MM/YYYY')"
                                     placeholder="Fecha" :disabled="true" />
                             </b-form-group>
                         </b-col>
+
                         <b-col>
                             <b-form-group label="Descripción">
                                 <b-form-input v-model="props.form.entity.descripcion" placeholder="Descripción"
-                                    :disabled="true" />
+                                    :disabled="false" />
                             </b-form-group>
                         </b-col>
+
+                        <b-col>
+                            <b-form-group label="Orden de Compra">
+                                <b-form-input v-model="props.form.entity.ordenCompra " placeholder="Orden Compra" 
+                                :disabled="false" />
+                            </b-form-group>
+                        </b-col>
+
                     </b-row>
                     <b-row>
                         <b-col>
@@ -171,6 +185,7 @@
                                 <tbody>
                                     <tr class="header">
                                         <td>Código</td>
+                                        
                                         <td>Nombre</td>
                                         <td>Fecha Creación</td>
                                         <td>Monto</td>
@@ -183,6 +198,7 @@
                                     </tr>
                                     <tr v-for="(item, index) in conceptos.filter(x => !x.deleted)" :key="item.id">
                                         <td>{{ item.concepto.id }}</td>
+                                        
                                         <td>{{ item.concepto.nombre }}</td>
                                         <td>{{ item.createDate ? moment(item.createDate).format('DD/MM/YYYY') : '' }}
                                         </td>
@@ -673,6 +689,7 @@ import { validationMixin } from "vuelidate";
 import apiServices from "../../../api-services";
 import store from "../../../store";
 import createNumberMask from "text-mask-addons/dist/createNumberMask";
+
 const currencyMask = createNumberMask({
     prefix: "",
     allowDecimal: true,
@@ -715,6 +732,8 @@ export default {
                 id: {},
                 createDate: {},
                 descripcion: {},
+                //otrosComprobantes: {},
+                ordenCompra: {}, //psd
                 saldo: {},
                 estado: {},
                 factura: {},
@@ -826,8 +845,8 @@ export default {
                 //proveedor: { required },
                 //estadoId: {},
                 //valor:{ required },
-                //descripcion:{required},
-                //proyecto : {},
+                //descripcion : {required},
+                //otrosComprobantes : {required}
                 //hitos: {},
                 //origen: { required },
                 //tipoComprobanteId: {}
@@ -1358,6 +1377,7 @@ export default {
             }
             return true
         },
+      
         seleccionarLiquidacion(entity) {
             const position = this.getLiquidacionPosition(entity.id, entity.estado);
             switch (entity.estado) {

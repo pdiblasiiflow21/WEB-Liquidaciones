@@ -62,7 +62,7 @@
                                 <b-form-input placeholder="Razón Social" v-model="props.form.entity.razonSocial" :disabled="false"/>                            
                             </b-form-group>    -->
                             <b-form-group label="Razón Social *">
-                                <b-form-input placeholder="Razón Social" v-model="props.form.entity.razonSocial" :disabled="false"/>
+                                <b-form-input placeholder="Razón Social" v-model="props.form.entity.razonSocial" :disabled="true"/>
                                 <b-form-invalid-feedback>Ingresar Razón Social</b-form-invalid-feedback>	
                                 <div class="invalid-feedback show" v-if="$isValid(props.form.$v.form.entity.razonSocial) === false">Ingrese Razón Social</div>
                             </b-form-group>
@@ -74,7 +74,7 @@
                                 <b-form-invalid-feedback>Ingrese Nombre y Apellido</b-form-invalid-feedback>
                             </b-form-group> -->
                             <b-form-group label="Nombre y Apellido *">
-                                <b-form-input placeholder="Nombre y Apellido" :value="getName(props.form.entity.nombre, props.form.entity.apellido)" :disabled="false"/>  
+                                <b-form-input placeholder="Nombre y Apellido" :value="getName(props.form.entity.nombre, props.form.entity.apellido)" :disabled="true"/>  
                             </b-form-group>   
                         </b-col>
                         <b-col>
@@ -86,17 +86,17 @@
                      <b-row>                
                         <b-col>
                             <b-form-group label="Email">
-                                <b-form-input placeholder="Email"  v-model="props.form.entity.email"  :disabled="false"/>
+                                <b-form-input placeholder="Email"  v-model="props.form.entity.email"  :disabled="true"/>
                             </b-form-group>
                         </b-col>
                            <b-col>
                             <b-form-group label="Teléfono">
-                                <b-form-input placeholder="Teléfono" v-model="props.form.entity.telefono" :disabled="false"/>
+                                <b-form-input placeholder="Teléfono" v-model="props.form.entity.telefono" :disabled="true"/>
                             </b-form-group>
                         </b-col>
                         <b-col>
                             <b-form-group label="Nombre Usuario">
-                                <b-form-input placeholder="Nombre Usuario" v-model="props.form.entity.nombreUsuario" :disabled="false"/>
+                                <b-form-input placeholder="Nombre Usuario" v-model="props.form.entity.nombreUsuario" :disabled="true"/>
                             </b-form-group>
                         </b-col>
                         <b-col align-self="center">

@@ -46,14 +46,14 @@ const routes = [
 
       { path: '/app/tablas/clientes', component: () => import(/* webpackChunkName: "clientes" */   './views/app/tablas/clientes/List') },
       { path: '/app/tablas/conceptos', component: () => import(/* webpackChunkName: "conceptos" */ './views/app/tablas/conceptos/List') },
-      { path: '/app/reportes/facturacionygastos', component: () => import(/* webpackChunkName: "facturacionygastos" */ './views/app/reportes/facturacionygastos/facturacionygastos') },
-      { path: '/app/reportes/proyectos', component: () => import(/* webpackChunkName: "permisos" */ './views/app/reportes/proyectos/proyectos') },
-      { path: '/app/cashflow', component: () => import(/* webpackChunkName: "permisos" */ './views/app/cashflow/List') },
+      //{ path: '/app/reportes/facturacionygastos', component: () => import(/* webpackChunkName: "facturacionygastos" */ './views/app/reportes/facturacionygastos/facturacionygastos') },
+      //{ path: '/app/reportes/proyectos', component: () => import(/* webpackChunkName: "permisos" */ './views/app/reportes/proyectos/proyectos') },
+      //{ path: '/app/cashflow', component: () => import(/* webpackChunkName: "permisos" */ './views/app/cashflow/List') },
       //psd
-      { path: '/app/roles', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/roles/roles') },
-      { path: '/app/rolespermisos', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/permisos/permisos') },
-      { path: '/app/rolesasignaciones', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/asignaciones/asignaciones') },
-      { path: '/app/licencias', component: () => import(/* webpackChunkName: "permisos" */ './views/app/licencias/Container') },
+      //{ path: '/app/roles', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/roles/roles') },
+      //{ path: '/app/rolespermisos', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/permisos/permisos') },
+      //{ path: '/app/rolesasignaciones', component: () => import(/* webpackChunkName: "permisos" */ './views/app/rolespermisos/asignaciones/asignaciones') },
+      //{ path: '/app/licencias', component: () => import(/* webpackChunkName: "permisos" */ './views/app/licencias/Container') },
 
       //{ path: '/app/cashflow', component: () => import(/* webpackChunkName: "permisos" */ './views/app/cashflow/List') }, NO HACE NADA
       //{ path: '/app/companias', component: () => import(/* webpackChunkName: "permisos" */ './views/app/companias/List') }, NO HACE NADA
