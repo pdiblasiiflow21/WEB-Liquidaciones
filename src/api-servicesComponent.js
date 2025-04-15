@@ -6,8 +6,9 @@ import store from "./store";
 Vue.use(Vuex);
 
 var config = null;
-const API_BASE_URL = "https://localhost:5000/api/";
-//const API_BASE_URL = "https://qa-apiliquidaciones.iflow21.com/api/";
+//const API_BASE_URL = "https://localhost:5001/api/";
+//const API_BASE_URL = "https://apiliquidaciones01.iflow21.com";
+const API_BASE_URL = "https://qa-apiliquidaciones.iflow21.com/api/";
 
 function find(url, request) {
   return axios.get(`${API_BASE_URL}${url}`, {

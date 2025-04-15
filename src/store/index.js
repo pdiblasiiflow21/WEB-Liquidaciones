@@ -15,7 +15,8 @@ export default new Vuex.Store({
 
     settings: {
       // apiUrl: "https://localhost:44393/",
-      //apiUrl: "https://localhost:5000/",
+      //apiUrl: "https://localhost:5001/",
+      //apiUrl: "https://liquidaciones01.iflow21.com/",
       apiUrl: "https://qa-liquidaciones.iflow21.com/",
       
       clientId: "administracionWebApp",

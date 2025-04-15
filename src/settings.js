@@ -1,8 +1,8 @@
 const settings = {
     DESA: {
         
-       apiUrl: "https://localhost:5000/",
-       //apiUrl: "https://qa-apiliquidaciones.iflow21.com/",
+       //apiUrl: "https://localhost:5001/",
+       apiUrl: "https://qa-apiliquidaciones.iflow21.com/",
        clientId: "administracionWebApp",
         auth0: {
             domain: "iflowliquidaciones-qa.us.auth0.com",
