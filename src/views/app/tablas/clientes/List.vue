@@ -628,22 +628,23 @@ export default {
             }
         },
         validateImpuesto(form) {
-            let porcentaje = 0
-            if (form.porcentajeExencion) {
-                porcentaje = +form.porcentajeExencion.replace(',', '.')
-            }
+                let porcentaje = 0
+                if (form.porcentajeExencion) {
+                    porcentaje = + form.porcentajeExencion.replace(',', '.')
+                }
 
-            if (form.impuestos && form.impuestos.id && ((form.porcentajeExencion && (+porcentaje) > 0 &&
+                if (form.impuestos && form.impuestos.id && ((form.porcentajeExencion && (+ porcentaje) > 0 &&
                     form.exencionDesde &&
                     form.exencionHasta &&
-                    (form.exencionHasta >= form.exencionDesde)) || (!form.porcentajeExencion)) &&
-                !this.impuestos.some(x => x.impuestoId === form ? .impuestos.id)) {
-                this.validateImpuestoProp = false;
-                return false;
-            }
-            this.validateImpuestoProp = true;
-            return true;
-        },
+                    (form.exencionHasta >= form.exencionDesde)) || (!form.porcentajeExencion))  &&
+                    !this.impuestos.some(x => x.impuestoId === form?.impuestos.id))
+                {
+                    this.validateImpuestoProp = false;
+                    return false;
+                }
+                    this.validateImpuestoProp = true;
+                return true;
+            },
         validateEditImpuesto(form) {
 
             if (((form.porcentajeExencion &&
@@ -689,19 +690,19 @@ export default {
             return numbers;
         },
         getMetodoEnvio(metodoEnvio) {
-            return this.metodosEnvio.find(x => x.value === metodoEnvio) ? .text;
+            return this.metodosEnvio.find(x => x.value === metodoEnvio)?.text;
         },
         getEstadosFacturacion(estadosFacturacion) {
             let estadosDeFacturacion = [];
             estadosFacturacion.forEach(x => {
-                let estadoFacturacion = this.estadosFacturacion.find(y => y.value === x) ? .text;
+                let estadoFacturacion = this.estadosFacturacion.find(y => y.value === x)?.text;
                 if (estadoFacturacion)
                     estadosDeFacturacion.push(estadoFacturacion);
             });
             return estadosDeFacturacion.join(', ');
         },
         getTipoCliente(tipoClienteValue) {
-            return this.tipoClientes.find(x => x.value === tipoClienteValue) ? .text;
+            return this.tipoClientes.find(x => x.value === tipoClienteValue)?.text;
         },
         getName(nombre, apellido) {
             return nombre && apellido ? nombre + ' ' + apellido : '';
@@ -786,7 +787,7 @@ export default {
             this.$refs.metodosEnvio.hide();
         },
         validateMetodoEnvio(item) {
-            if (item ? .metodoEnvio && !this.metodosDeEnvioAux.some(x => x.metodoEnvio === item ? .metodoEnvio) && item ? .estadosFacturacion.length > 0)
+            if (item?.metodoEnvio && !this.metodosDeEnvioAux.some(x => x.metodoEnvio === item?.metodoEnvio) && item?.estadosFacturacion.length > 0)
                 return false;
             return true;
         },
@@ -798,9 +799,9 @@ export default {
                     codigo: i.impuestos.codigo
                 },
                 impuestoId: i.impuestos.id,
-                porcentajeExencion: i.porcentajeExencion ? .toString().replaceAll('.', '').replace(',', '.'),
-                exencionDesde: i.exencionDesde ? ? '',
-                exencionHasta: i.exencionHasta ? ? ''
+                porcentajeExencion: i.porcentajeExencion ?.toString().replaceAll('.', '').replace(',', '.'),
+                exencionDesde: i.exencionDesde ?? '',
+                exencionHasta: i.exencionHasta ?? ''
             });
             i.impuestos = null;
             i.porcentajeExencion = null;
@@ -826,7 +827,7 @@ export default {
             this.$refs.editImpuestoModal.show();
         },
         editImpuesto() {
-            this.impuestos[this.modalEditImpuesto.index].porcentajeExencion = this.modalEditImpuesto.porcentajeExencion ? .toString().replaceAll('.', '').replace(',', '.');
+            this.impuestos[this.modalEditImpuesto.index].porcentajeExencion = this.modalEditImpuesto.porcentajeExencion?.toString().replaceAll('.', '').replace(',', '.');
             this.impuestos[this.modalEditImpuesto.index].exencionDesde = this.modalEditImpuesto.exencionDesde;
             this.impuestos[this.modalEditImpuesto.index].exencionHasta = this.modalEditImpuesto.exencionHasta;
             this.$refs.editImpuestoModal.hide();
