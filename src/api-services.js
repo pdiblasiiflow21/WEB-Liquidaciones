@@ -1,11 +1,11 @@
 import axios from "axios";
 import store from "../src/store"
-const API_BASE_URL = 'https://qa-apiliquidaciones.iflow21.com/api/';
-//const API_BASE_URL = "https://apiliquidaciones01.iflow21.com/api/";
+//const API_BASE_URL = 'https://qa-apiliquidaciones.iflow21.com/api/';
+const API_BASE_URL = "https://apiliquidaciones01.iflow21.com/api/";
 //const API_BASE_URL = "https://localhost:5001/api/";
 
-const API_PROYECTO = 'https://qa-apiliquidaciones.iflow21.com/api/proyecto';
-//const API_PROYECTO = 'https://apiliquidaciones01.iflow21.com/api/proyecto';
+//const API_PROYECTO = 'https://qa-apiliquidaciones.iflow21.com/api/proyecto';
+const API_PROYECTO = 'https://apiliquidaciones01.iflow21.com/api/proyecto';
 //const API_PROYECTO = 'https://localhost:5001/api/proyecto';
 const config = {
     headers: { Authorization: `Bearer ${store.state.auth.token}` }

@@ -26,7 +26,7 @@
 
             <template slot='columns'>
                 <column field="omsId" title="OMS Id" width="80" />
-                <column :field="(entity) => entity.razonSocialNombre" title="Razón Social" width="100" />
+                <column :field="(entity) => entity.razonSocial" title="Razón Social" width="100" />
                 <column :field="(entity) => { return entity.tipoDocumento != null ? entity.tipoDocumento.descripcion + ': ' + entity.numeroDeDocumento : entity.numeroDeDocumento }" title="Tipo y N° Documento" width="200" />
                 <column :field="(entity) => { return entity.tipoImpuesto != null ? entity.tipoImpuesto.descripcion  : '' }" title="Condición IVA" width="150" />
                 <column :field="(entity) => entity.estadosFacturacion" title="Estados Facturación" width="150" />

@@ -21,7 +21,7 @@
                 <b-colxx :xxs="3">
                     <div class="filter float-md-left mr-6 align-top"></div>
                     <div class="filter-sm">
-                        <select-deluxe resource="clientes" :selectItemLabel="({ razonSocialNombre }) => `${razonSocialNombre}`"
+                        <select-deluxe resource="clientes" :selectItemLabel="({ razonSocial }) => `${razonSocial}`"
                             method="getAll" placeholder="Buscar por Razón Social / Usuario OMS" valueField="id" v-model="filtroGrillaOptions.clienteId" class="list-filter"></select-deluxe>
                     </div>
                 </b-colxx>
@@ -57,11 +57,13 @@
             <template slot="columns">
                 <column field="id" title="Id" width="15" />
                 <column :field="(entity) => moment(entity.createDate).format('DD/MM/YYYY')" title="Fecha" width="100" />
-                <column :field="(entity) => entity.cliente.razonSocialNombre" title="Razón Social" width="150" />
+
+                <!--<column :field="(entity) => entity.cliente.Cliente" title="Cliente" width="150" />-->
+                <column :field="(entity) => entity.cliente.razonSocial"  title="Razon Social" width="150" />
 
                 <column field="descripcion" title="Descripción" width="150" />
 
-                <column field="ordenCompra" title="O. C." width="75" />
+                <column field="ordenCompra" title="O. C." width="150" />
 
                 <column :field="(entity) => { return '$ ' + maskForCulNum(entity.saldo)}" title="Saldo" width="100" />
                 <column field="numeroFactura" title="Factura" width="100" />
@@ -69,10 +71,10 @@
                     width="100" />
                 <column :field="(entity) => { return '$ ' + maskForCulNum(entity.montoFinalFactura)}" title="Monto factura"
                     width="100" />
-                <column :field="(entity) => getEstado(entity.estado)" title="Estado" width="50" />
+                <column :field="(entity) => getEstado(entity.estado)" title="Estado" width="100" />
                         <column :field="(entity) => { return entity.updatedBy ? entity.updatedBy  : entity.createdBy }" title="Usuario Modificación"/>      
-                        <column :field="(entity) => moment(entity.updatedBy ? entity.updateDate  : entity.createDate).format('DD/MM/YYYY')" title="Fecha Modificación" width="50"/>    
-                <column :field="(entity) => customerIsValid(entity.cliente) ? 'Ok' : 'Revisar'" title="ERP" width="30" />                             
+                        <column :field="(entity) => moment(entity.updatedBy ? entity.updateDate  : entity.createDate).format('DD/MM/YYYY')" title="Fecha Modificación" width="100"/>    
+                <column :field="(entity) => customerIsValid(entity.cliente) ? 'Ok' : 'Revisar'" title="ERP" width="50" />                             
             </template>
             <template slot='modal-form' slot-scope="props">
                 <div v-if="view === 0">
@@ -125,7 +127,7 @@
                         </b-col>
                         <b-col>
                             <b-form-group label="Cliente">
-                                <b-form-input v-model="props.form.entity.clienteName" placeholder="Cliente"
+                                <b-form-input v-model="props.form.entity.razonSocial" placeholder="Cliente"
                                     :disabled="true" />
                             </b-form-group>
                         </b-col>
@@ -604,7 +606,7 @@
                                         </tr>
                                         <tr v-for="item in arrOrdenes" :key="item.id">
                                             <td>{{ item.id }}</td>
-                                            <td>{{ item.cliente.razonSocial}}</td>
+                                            <td>{{ item.cliente.razonSocialNombre}}</td>
                                             <td>{{ item.idMercadoPago}}</td>
                                             <td>{{ item.urlpago}}</td>
                                             <td>{{ getOrdenesIncluidas(item.codigoOrdenPago) }}</td>
@@ -643,7 +645,8 @@
                                         </tr>
                                         <tr  v-for="item in arrEnvios" :key="item.id">
                                             <td>{{ item.id }}</td>
-                                            <td>{{ item.cliente.razonSocial}}</td>
+                                            <td>{{ item.cliente.Cliente }}</td>
+                                            
                                             <td>{{ item.etiqueta}}</td>
                                             <td>{{ item.cantidad}}</td>
                                             <td>{{ item.valoritems }}</td>
@@ -1786,7 +1789,8 @@ export default {
             this.confirmErp = false
             // form.entity.createDate = moment(form.entity.createDate).format('DD/MM/YYYY')
             form.entity.estadoText = this.estados.opciones.find(x => x.value === form.entity.estado).text;
-            form.entity.clienteName = form.entity.cliente.razonSocial;
+            //form.entity.clienteName = form.entity.cliente.razonSocial;
+            form.entity.clienteName = form.entity.cliente.Cliente ;
             form.entity.documento = form.entity.cliente.numeroDeDocumento;
             if (this.view) {
                 this.view = 0
