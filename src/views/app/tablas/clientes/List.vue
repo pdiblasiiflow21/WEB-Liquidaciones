@@ -53,20 +53,20 @@
                         </b-form-group>
 
                     </b-col>
-                    <!-- <b-col>      
+                    <!--b-col>      
                             <b-form-group label="Nombre">
-                                <b-form-input placeholder="Nombre" :value="getName(props.form.entity.nombre)" :disabled="true"/>  
+                                <b-form-input placeholder="Nombre" :value="getName(props.form.entity.Nombre)" :disabled="true"/>  
                             </b-form-group> 
                         </b-col>
                         <b-col>
                             <b-form-group label="Apellido">
-                                <b-form-input placeholder="Apellido" :value="getName(props.form.entity.apellido)" :disabled="true"/>  
+                                <b-form-input placeholder="Apellido" :value="getName(props.form.entity.Apellido)" :disabled="true"/>  
                             </b-form-group> 
-                        </b-col> -->
+                        </b-col--> 
 
                     <b-col>
                         <b-form-group label="Nombre Y Apellido">
-                            <b-form-input placeholder="Nombre y Apellido" :value="getName(props.form.entity.nombre, props.form.entity.apellido)" :disabled="true" />
+                            <b-form-input placeholder="Nombre y Apellido" :value="getName (props.form.entity.Nombre, props.form.entity.Apellido )" :disabled="false" />
                         </b-form-group>
                     </b-col>
 
@@ -448,10 +448,10 @@ export default {
                 razonSocial: {
                     required
                 },
-                nombre: {
+                Nombre: {
                     required
                 },
-                apellido: {
+                Apellido: {
                     required
                 },
                 calle: {
@@ -704,8 +704,8 @@ export default {
         getTipoCliente(tipoClienteValue) {
             return this.tipoClientes.find(x => x.value === tipoClienteValue)?.text;
         },
-        getName(nombre, apellido) {
-            return nombre && apellido ? nombre + ' ' + apellido : '';
+        getName(Nombre, Apellido) {
+            return Nombre && Apellido ? Nombre + ' ' + Apellido : '';
         },
 
         getCondicionIva(condicionIva) {

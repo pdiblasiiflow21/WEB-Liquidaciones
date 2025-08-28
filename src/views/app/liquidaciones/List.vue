@@ -63,7 +63,7 @@
 
                 <column field="descripcion" title="Descripción" width="150" />
 
-                <column field="ordenCompra" title="O. C." width="150" />
+                <column field="OrdenCompra" title="O. C." width="150" />
 
                 <column :field="(entity) => { return '$ ' + maskForCulNum(entity.saldo)}" title="Saldo" width="100" />
                 <column field="numeroFactura" title="Factura" width="100" />
@@ -101,7 +101,7 @@
 
                         <b-col>
                             <b-form-group label="Orden de Compra">
-                                <b-form-input v-model="props.form.entity.ordenCompra " placeholder="Orden Compra" 
+                                <b-form-input v-model="props.form.entity.OrdenCompra " placeholder="Orden Compra" 
                                 :disabled="false" />
                             </b-form-group>
                         </b-col>
@@ -736,7 +736,7 @@ export default {
                 createDate: {},
                 descripcion: {},
                 //otrosComprobantes: {},
-                ordenCompra: {}, //psd
+                OrdenCompra: {}, //psd
                 saldo: {},
                 estado: {},
                 factura: {},
